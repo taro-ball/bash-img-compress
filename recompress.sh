@@ -4,14 +4,12 @@ export DESTINATION="/d/photo_out"
 for di in $SOURCE/*/     # list directories in the form "/tmp/dirname/"
 do
     dir=${di%*/}      # remove the trailing "/"
-    echo $dir
-#    echo ${dir##*/}    # print everything after the final "/"
-#    LIST=$(find \"$dir\" -name *.jpg)
-    find \"$dir\" -name "*.jpg" -type f -print0 |
-    while read -d '' file
-    do
-        echo "<<$file>>"
+    cd "$dir"
+    echo =================================
+    pwd
+    find . -type f -iname '*.j*' -print0 | 
+    while IFS= read -r -d '' file; do
+        printf '%s\n' "$file"
     done
-    #echo $LIST
-done
 
+done
