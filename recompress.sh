@@ -21,7 +21,7 @@ while IFS= read -r di; do
         if [ ! -f "$out_path/$file" ];
         then
             echo processing $file...
-            convert_cmd="$iMGK_PATH/convert $file -resize 2222x2222 -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB \"$out_path/$file\""
+            convert_cmd="$iMGK_PATH/convert \"$file\" -resize 2222x2222 -sampling-factor 4:2:0 -strip -quality 85 -interlace JPEG -colorspace RGB \"$out_path/$file\""
             eval "$convert_cmd"
         else
             echo "$file exists, skipping"
